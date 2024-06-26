@@ -6,9 +6,11 @@ import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeli
 import 'react-vertical-timeline-component/style.min.css';
 import { experiencesData } from '@/lib/data';
 import { useSectionInView } from '@/lib/hooks';
+import { useThemeContext } from '@/context/theme-context';
 
 export default function Experience() {
-    const { ref } = useSectionInView("Experience");
+    const { ref, inView } = useSectionInView("Experience", 0.5);
+    const { theme }= useThemeContext();
   return (
     <section
     id= "experience"
@@ -33,6 +35,7 @@ export default function Experience() {
                         }}
                         date={item.date}
                         icon={item.icon}
+                        visible={inView}
                         iconStyle={{
                             border: "white",
                             fontSize: "1.5rem",
